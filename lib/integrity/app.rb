@@ -4,7 +4,12 @@ module Integrity
     enable  :methodoverride, :static, :sessions
     disable :build_all
 
-    helpers Integrity::Helpers
+    register Mustache::Sinatra
+    helpers  Integrity::Helpers
+
+    set :mustache,
+      :templates => File.join(root, "templates"),
+      :namespace => Integrity
 
     not_found do
       status 404
@@ -101,7 +106,7 @@ module Integrity
 
     get "/:project/fork" do
       login_required
-      show :fork, :title => ["projects", current_project.permalink, "fork"]
+      mustache :fork, :title => ["projects", current_project.permalink, "fork"]
     end
 
     post "/:project/fork" do

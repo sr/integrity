@@ -3,6 +3,8 @@ require "sinatra/base"
 require "sinatra/authorization"
 require "json"
 require "haml"
+require "mustache"
+require "mustache/sinatra"
 require "sass"
 require "sass/plugin/rack"
 require "dm-core"
@@ -37,6 +39,8 @@ require "integrity/app"
 require "integrity/repository"
 require "integrity/builder"
 require "integrity/builder/threaded"
+
+require "integrity/views/fork"
 
 # TODO
 Addressable::URI.class_eval { def gsub(*a); to_s.gsub(*a); end }
