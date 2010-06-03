@@ -14,7 +14,7 @@
       %button{ :type => :submit } manual build
 - else
   #last_build{ :class => @project.status }
-    = partial(:build_info, :build => @project.last_build)
+    = haml_partial(:build_info, :build => @project.last_build)
 
   %form{ :action => project_path(@project, :builds), :method => :post }
     %p.submit.manual-build

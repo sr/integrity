@@ -126,10 +126,17 @@ module Integrity
       redirect build_url(@build).to_s
     end
 
+    # TODO
     get "/:project/builds/:build" do
       login_required unless current_project.public?
-      show :build, :title => ["projects", current_project.permalink,
-        current_build.commit.short_identifier]
+
+      @title = breadcrumbs(
+        "projects",
+        current_project.permalink,
+        current_build.commit.short_identifier
+      )
+
+      mustache :build_view, :title => @title
     end
 
     post "/:project/builds/:build" do

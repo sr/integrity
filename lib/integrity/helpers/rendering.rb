@@ -13,7 +13,7 @@ module Integrity
         haml view
       end
 
-      def partial(template, locals={})
+      def haml_partial(template, locals={})
         haml("_#{template}".to_sym, :locals => locals, :layout => false)
       end
 

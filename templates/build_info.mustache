@@ -1,0 +1,26 @@
+<h1>{{status}}</h1>
+
+<form action={{form_rebuild_url}} method=post>
+<p class=submit>
+  <button type=submit title="Rebuild this commit">Rebuild</button>
+</p>
+</form>
+
+<blockquote>
+<p>{{commit_message}}</p>
+<p class=meta>
+<span class=who>by: {{commit_author}}</span>
+<span class=when title="{{commit_date}}">{{commit_date_pretty}}</span>
+{{#github?}}
+<span class=github>
+  <a href="{{github_url}}">on GitHub</a>
+</span>
+{{/github?}}
+</p>
+</blockquote>
+
+{{#completed?}}
+<h2>Build Output:</h2>
+<pre class=output>{{output}}</pre>
+{{/completed?}}
+
