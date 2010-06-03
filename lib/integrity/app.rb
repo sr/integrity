@@ -104,9 +104,11 @@ module Integrity
       show :new, :title => ["projects", current_project.permalink, "edit"]
     end
 
+    # TODO
     get "/:project/fork" do
       login_required
-      mustache :fork, :title => ["projects", current_project.permalink, "fork"]
+      @title = breadcrumbs("projects", current_project.permalink, "fork")
+      mustache :fork
     end
 
     post "/:project/fork" do

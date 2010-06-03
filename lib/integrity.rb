@@ -40,6 +40,7 @@ require "integrity/repository"
 require "integrity/builder"
 require "integrity/builder/threaded"
 
+require "integrity/views/layout"
 require "integrity/views/fork"
 
 # TODO

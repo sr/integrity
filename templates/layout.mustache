@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{{page_title}}</title>
+  {{#stylesheets}}
+    <link rel=stylesheet type=text/css href={{url}}>
+  {{/stylesheets}}
+</head>
+<body>
+<div id=header>
+  <h1>{{{content_title}}}</h1>
+  <address class=watermark>
+    checked with
+    <a href=http://integrityapp.com title="Continuous Integration server">
+      integrity
+    </a>
+  </address>
+</div>
+<div id=content>{{{yield}}}</div>
+{{#protect?}}
+<div id=footer>
+  {{#authorized?}}
+  Oh, hello <strong>{{current_user}}</strong>
+  {{/authorized?}}
+
+  {{#not_authorized?}}
+  Hey there! <a href={{login_path}}>Log In</a> if you have a user
+  {{/not_authorized?}}
+</div>
+{{/protect?}}
+</body>
+<html>
+
