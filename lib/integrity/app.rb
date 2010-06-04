@@ -11,9 +11,11 @@ module Integrity
       :templates => File.join(root, "templates"),
       :namespace => Integrity
 
+    # TODO
     not_found do
       status 404
-      show :not_found, :title => "lost, are we?"
+      @title = ["lost, are we?"]
+      mustache :not_found
     end
 
     error do
