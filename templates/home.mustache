@@ -1,0 +1,18 @@
+{{#empty?}}
+<div class=blank_slate>
+<p>None yet, huh?</p>
+<h1>Why don't you <a href={{new_path}}>create your first project</a>?</h1>
+{{/empty?}}
+
+{{#any?}}
+<ul id=projects>
+{{#projects}}
+  <li class="{{class}}">
+    <a href={{path}}>{{name}}</a>
+    <div class=meta>{{status}}</div>
+  </li>
+{{/projects}}
+</ul>
+
+<p id=new><a href={{new_path}}>Add a new project</a></p>
+{{/any?}}

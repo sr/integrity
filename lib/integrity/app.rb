@@ -46,8 +46,10 @@ module Integrity
     end
 
     get "/?" do
+      # TODO
+      @title = ["projects"]
       @projects = authorized? ? Project.all : Project.all(:public => true)
-      show :home, :title => "projects"
+      mustache :home
     end
 
     get "/login" do
