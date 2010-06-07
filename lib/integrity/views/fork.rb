@@ -1,7 +1,7 @@
 module Integrity
   module Views
     class Fork < Layout
-      def form_action
+      def fork_path
         project_path(@project, :fork).to_s
       end
     end

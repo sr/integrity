@@ -1,6 +1,6 @@
-<h1>{{status}}</h1>
+<h1>{{build_status}}</h1>
 
-<form action={{form_rebuild_url}} method=post>
+<form action={{rebuild_path}} method=post>
 <p class=submit>
   <button type=submit title="Rebuild this commit">Rebuild</button>
 </p>
@@ -13,14 +13,14 @@
 <span class=when title="{{commit_date}}">{{commit_date_pretty}}</span>
 {{#github?}}
 <span class=github>
-  <a href="{{github_url}}">on GitHub</a>
+  <a href="{{build_github_url}}">on GitHub</a>
 </span>
 {{/github?}}
 </p>
 </blockquote>
 
-{{#completed?}}
+{{#build_completed?}}
 <h2>Build Output:</h2>
-<pre class=output>{{output}}</pre>
-{{/completed?}}
+<pre class=output>{{build_output}}</pre>
+{{/build_completed?}}
 

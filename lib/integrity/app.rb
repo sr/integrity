@@ -79,9 +79,12 @@ module Integrity
       end
     end
 
+    # TODO
     get "/:project" do
       login_required unless current_project.public?
-      show :project, :title => ["projects", current_project.name]
+      @project = current_project
+      @title   = breadcrumbs("projects", @project.name)
+      mustache :project_view
     end
 
     put "/:project" do

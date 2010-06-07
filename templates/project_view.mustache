@@ -1,0 +1,39 @@
+<div id=administrative>
+<a href={{edit_path}}>Edit</a> /
+<a href={{fork_path}}>Fork</a>
+{{#github?}}
+ / <a href={{project_github_url}}>GitHub</a>
+{{/github?}}
+</div>
+
+{{#blank?}}
+<form class=blank_slate action={{create_build_path}} method=post>
+  <p>No builds for this project, buddy</p>
+  <h1>You can request a <button type=submit>manual build</button></h1>
+</form>
+{{/blank?}}
+
+{{#not_blank?}}
+<div id=last_build class={{last_build_class}}>
+  {{>build_info}}
+</div>
+
+<form action={{create_build_path}} method=post>
+  <p class="submit manual-build">
+  <button type=submit title="Fetch the last commit from the remote
+  repository and build it">Fetch and build</button>
+  </p>
+</form>
+
+<h2>Builds</h2>
+<ul id=previous_builds>
+  {{#builds}}
+  <li class={{class}}>
+    <a href={{path}}>
+      <strong class=build>Build {{sha1}}</strong>
+      <span class=attribution>by {{author}}, {{when}}</span>
+    </a>
+  </li>
+  {{/builds}}
+</ul>
+{{/not_blank?}}

@@ -1,8 +1,8 @@
-<div id=build class={{css_class}}>
+<div id=build class={{css_build_status}}>
   {{>build_info}}
 </div>
 
-<form action={{form_action}} method=post>
+<form action={{destroy_path}} method=post>
   <input name=_method type=hidden value=delete>
   <p><button title="Delete this build">Delete this build</button></p>
 </form>

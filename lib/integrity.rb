@@ -45,6 +45,7 @@ require "integrity/views/fork"
 require "integrity/views/build"
 require "integrity/views/not_found"
 require "integrity/views/home"
+require "integrity/views/project_view"
 
 # TODO
 Addressable::URI.class_eval { def gsub(*a); to_s.gsub(*a); end }
