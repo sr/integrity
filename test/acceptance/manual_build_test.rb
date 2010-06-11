@@ -9,7 +9,7 @@ class ManualBuildTest < Test::Unit::AcceptanceTestCase
 
   setup do
     @builder = Integrity.builder
-    Integrity.configure { |c| c.builder :threaded }
+    Integrity.configure { |c| c.builder = :threaded }
   end
 
   teardown do
@@ -153,7 +153,7 @@ class ManualBuildTest < Test::Unit::AcceptanceTestCase
       FileUtils.rm_f("dj.db")
 
       Integrity.configure { |c|
-        c.builder :dj, :adapter => "sqlite3", :database => "dj.db"
+        c.builder = :dj, {:adapter => "sqlite3", :database => "dj.db"}
       }
 
       repo = git_repo(:my_test_project)
