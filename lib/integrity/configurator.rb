@@ -42,8 +42,8 @@ module Integrity
       Integrity::App.set(:github, token)
     end
 
-    def build_all!
-      Integrity.app.enable(:build_all)
+    def build_all=(v)
+      Integrity.app.set(:build_all, v)
     end
 
     def user=(v)

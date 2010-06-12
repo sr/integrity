@@ -47,7 +47,7 @@ Integrity.configure do |c|
   c.base_url  = "http://ci.example.org"
   c.log       = "integrity.log"
   c.builder   = :threaded, 5
-  c.build_all!
+  c.build_all = true
 end
 ----
 
@@ -66,8 +66,8 @@ is writable by the user who runs Integrity.
 base_url:: Absolute URL to your Integrity instance, *without* a trailing slash.
 This setting is optional but is required to have proper links in notifications.
 log:: Path to the Integrity log file; mostly useful for troubleshooting
-build_all!:: Tells Integirty to build every single commit it is notified about.
-Only builds the newest otherwise.
+build_all:: If sets to true, Integirty builds every single commit you push or
+only the newest otherwise.
 HTTP authentication:: If both the `user` and `pass` settings are set then only
 the logged-in users can administer the projects and see the private ones.
 [source, ruby]
