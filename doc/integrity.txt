@@ -42,11 +42,11 @@ Integrity is configured via the `init.rb` file using Ruby.
 [source, ruby]
 ----
 Integrity.configure do |c|
-  c.database  "sqlite3:integrity.db"
-  c.directory "builds"
-  c.base_url  "http://ci.example.org"
-  c.log       "integrity.log"
-  c.builder   :threaded, 5
+  c.database  = "sqlite3:integrity.db"
+  c.directory = "builds"
+  c.base_url  = "http://ci.example.org"
+  c.log       = "integrity.log"
+  c.builder   = :threaded, 5
   c.build_all!
 end
 ----
