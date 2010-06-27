@@ -43,6 +43,16 @@ module Integrity
       show :home, :title => "projects"
     end
 
+    get "/poll" do
+      content_type :json
+
+      Build.all.
+        select { |b| b.completed? }.
+        select { |b| b.started_at >= DateTime.parse(params["t"]) }.
+        map    { |b| {:id => b.id, :status => b.human_status} }.
+        to_json
+    end
+
     get "/login" do
       login_required
 
