@@ -51,5 +51,14 @@ module Integrity
     def pass(v)
       Integrity.app.set(:pass, v)
     end
+
+    def webkit_notifier=(v)
+      Integrity.app.set(:webkit_notifier, true)
+    end
+
+    def webkit_notifier?
+      Integrity.app.respond_to?(:webkit_notifier) &&
+        Integrity.app.webkit_notifier?
+    end
   end
 end
