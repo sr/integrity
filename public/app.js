@@ -6,13 +6,17 @@ $(document).ready(function () {
   var cache = [];
   var start = new Date().toISOString();
 
-  $("#content").append("<button id=notify>enable notification</button>");
+  $("#new").append("<span id=separator> / </span>")
+  $("#new").append("<a id=notify>Enable notifications</a>");
 
   $("#notify").click(function() {
     if (window.webkitNotifications.checkPermission() !== 0) {
       window.webkitNotifications.requestPermission();
     } else {
+      $("#separator").remove();
       $("#notify").remove();
+      $("#content").
+        append("<small style='font-size:x-small'>polling...</small>");
     }
   });
 
