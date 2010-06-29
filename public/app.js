@@ -20,17 +20,20 @@ $(document).ready(function () {
     }
   });
 
-  setInterval(function () {
+  function poll() {
     $.getJSON("/poll", {"t": start}, function (data) {
       data.forEach(function (build) {
         if (cache.indexOf(build.id) == -1) {
           cache.push(build.id);
-          var title   = "Build " + build.id;
+          var title   = "Integrity: " + build.project;
           var content = build.status;
           window.webkitNotifications.createNotification(
-            "", "Integrity", content).show();
+            "", title, content).show();
         }
       });
     });
-  }, 3000);
+    setTimeout(poll, 3000);
+  }
+
+  poll();
 });
