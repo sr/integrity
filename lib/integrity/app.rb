@@ -49,8 +49,11 @@ module Integrity
       Build.all.
         select { |b| b.completed? }.
         select { |b| b.started_at >= DateTime.parse(params["t"]) }.
-        map    { |b| {:id => b.id, :status => b.human_status} }.
-        to_json
+        map    { |b|
+          { :id      => b.id,
+            :status  => b.human_status,
+            :project => b.project.name }
+        }. to_json
     end
 
     get "/login" do
