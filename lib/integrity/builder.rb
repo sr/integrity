@@ -37,7 +37,8 @@ module Integrity
     def complete
       Integrity.log "Build #{commit} exited with #{@status} got:\n #{@output}"
 
-      @build.update!(
+      @build.save
+      @build.update(
         :completed_at => Time.now,
         :successful   => @status,
         :output       => @output
@@ -46,10 +47,23 @@ module Integrity
       @build.project.enabled_notifiers.each { |n| n.notify_of_build(@build) }
     end
 
+    def <<(chunk)
+      @output += chunk
+      @build.output = @output
+      @build.save
+    rescue DataObjects::ConnectionError
+    end
+
     def run
-      cmd = "(cd #{repo.directory} && #{@build.project.command} 2>&1)"
-      IO.popen(cmd, "r") { |io| @output = io.read }
-      @status = $?.success?
+      status = Open4.spawn(
+        @build.project.command,
+        :pwd   => repo.directory.to_s,
+        :out   => self,
+        :err   => self,
+        :quiet => true
+      )
+
+      @status = status.exitstatus != 1
     end
 
     def repo

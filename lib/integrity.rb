@@ -20,6 +20,7 @@ require "ostruct"
 require "pathname"
 require "forwardable"
 require "bcat/ansi"
+require "open4"
 
 require "integrity/core_ext/object"
 
